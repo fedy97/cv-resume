@@ -13,7 +13,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v1
       - name: Compile Main
-        uses: actions/checkout@v1
+        uses: xu-cheng/latex-action@master
         with:
           root_file: main.tex
           working_directory: src/

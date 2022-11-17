@@ -1,0 +1,139 @@
+%%%%%%%%%%%%%%%%%
+% This is an example CV created using altacv.cls (v1.1.4, 27 July 2018) written by
+% LianTze Lim (liantze@gmail.com), based on the
+% Cv created by BusinessInsider at http://www.businessinsider.my/a-sample-resume-for-marissa-mayer-2016-7/?r=US&IR=T
+%
+%% It may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2003/12/01 or later.
+%%%%%%%%%%%%%%%%
+
+%% If you want to use \orcid or the
+%% academicons icons, add "academicons"
+%% to the \documentclass options.
+%% Then compile with XeLaTeX or LuaLaTeX.
+% \documentclass[10pt,a4paper,academicons]{altacv}
+
+%% Use the "normalphoto" option if you want a normal photo instead of cropped to a circle
+% \documentclass[10pt,a4paper,normalphoto]{altacv}
+\usepackage{hyperref}
+\documentclass[10pt,a4paper]{altacv}
+
+%% AltaCV uses the fontawesome and academicon fonts
+%% and packages.
+%% See texdoc.net/pkg/fontawecome and http://texdoc.net/pkg/academicons for full list of symbols.
+%% When using the "academicons" option,
+%% Compile with LuaLaTeX for best results. If you
+%% want to use XeLaTeX, you may need to install
+%% Academicons.ttf in your operating system's font %% folder.
+
+
+% Change the page layout if you need to
+\geometry{left=1cm,right=9cm,marginparwidth=6.8cm,marginparsep=1.2cm,top=1cm,bottom=1cm}
+
+% Change the font if you want to.
+
+% If using pdflatex:
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[default]{lato}
+\usepackage{hyperref}
+
+% If using xelatex or lualatex:
+% \setmainfont{Lato}
+
+% Change the colours if you want to
+\definecolor{VividPurple}{HTML}{008080}
+\definecolor{SlateGrey}{HTML}{2E2E2E}
+\definecolor{LightGrey}{HTML}{666666}
+\colorlet{heading}{VividPurple}
+\colorlet{accent}{VividPurple}
+\colorlet{emphasis}{SlateGrey}
+\colorlet{body}{LightGrey}
+
+% Change the bullets for itemize and rating marker
+% for \cvskill if you want to
+\renewcommand{\itemmarker}{{\small\textbullet}}
+\renewcommand{\ratingmarker}{\faCircle}
+
+%% sample.bib contains your publications
+%\addbibresource{sample.bib}
+
+\begin{document}
+\name{Federico Morreale}
+\tagline{Software Engineer}
+% Cropped to square from https://en.wikipedia.org/wiki/Marissa_Mayer#/media/File:Marissa_Mayer_May_2014_(cropped).jpg, CC-BY 2.0
+\photo{2.5cm}{3}
+\personalinfo{%
+  % Not all of these are required!
+  % You can add your own with \printinfo{symbol}{detail}
+  \email{\href{mailto:frc.morreale@gmail.com}{frc.morreale@gmail.com}}
+  \phone{+393299135471}
+  \location{\href{https://www.google.it/maps/place/47841+Cattolica+RN}{Cattolica (RN), Italy}}
+  \linebreak
+  \linkedin{\href{https://linkedin.com/in/federico-morreale-3a3071146/}{LinkedIn}}
+  \linebreak
+  \github{\href{https://github.com/fedy97}{Github}}
+%   \github{github.com/mmayer} % I'm just making this up though.
+%   \orcid{orcid.org/0000-0000-0000-0000} % Obviously making this up too. If you want to use this field (and also other academicons symbols), add "academicons" option to \documentclass{altacv}
+}
+
+%% Make the header extend all the way to the right, if you want.
+\begin{fullwidth}
+\makecvheader
+\end{fullwidth}
+
+%% Depending on your tastes, you may want to make fonts of itemize environments slightly smaller
+\AtBeginEnvironment{itemize}{\small}
+
+%% Provide the file name containing the sidebar contents as an optional parameter to \cvsection.
+%% You can always just use \marginpar{...} if you do
+%% not need to align the top of the contents to any
+%% \cvsection title in the "main" bar.
+
+%\cvsection[page2sidebar]
+\cvsection[page1sidebar]
+{Work Experience}
+\cvevent{Consultant at \href{https://www.reply.com/pay-reply/}{Pay Reply}}{Full time}{May 2022 - Present}{Milan (MI), Italy}
+\cvevent{Internship at \href{https://www.thalesgroup.com/en/italy}{Thales Alenia Space}}{Stage}{April 2021 - April 2022}{Gorgonzola (MI), Italy}
+
+
+\cvsection{Education}
+\cvevent{\href{https://www8.ceda.polimi.it/manifesti/manifesti/controller/extra/RegolamentoPublic.do?jaf_currentWFID=main&EVN_DEFAULT=evento&aa=2019&k_corso_la=481&lang=EN}{MSc Computer Science and Engineering}} {Politecnico di Milano}{2019 - 2021}{Milan (MI), Italy}
+\textsc{Final Grade}: 106/110
+\linebreak
+
+\cvevent{\href{https://www8.ceda.polimi.it/manifesti/manifesti/controller/extra/RegolamentoPublic.do?jaf_currentWFID=main&EVN_DEFAULT=evento&aa=2016&k_corso_la=358&lang=EN}{BSc Engineering of Computing Systems}}{Politecnico di Milano}{2016 - 2019}{Milan (MI), Italy}
+\textsc{Final Grade}: 96/110
+\linebreak
+
+\cvevent{\href{https://www.liceovoltafellini.edu.it/}{Diploma Licea Scientifico}}{Liceo Scientifico A. Volta}{2011-2016}{Riccione (RN), Italy}
+\textsc{Final Grade}: 78/100
+
+ \divider
+
+
+\cvsection{Projects}
+\begin{itemize}
+\item \href{https://github.com/fedy97/SafeStreets-Frontend-Flutter}{Full stack mobile application that helps police to fine bad parkings, written in Flutter and Node.js with Firebase.}
+\item \href{https://github.com/fedy97/Progetto-Api-2018-Polimi}{A non-deterministic Touring Machine written in C.}
+\item \href{https://github.com/fedy97/Progetto-Reti-Logiche-2018-Polimi}{Hardware specification to solve manhattan distances between centroids written in VHDL.}
+\item \href{https://github.com/fedy97/Design-Patterns}{Design Patterns in Java 11.}
+\item \href{https://github.com/fedy97/digital-innovation-lab-2020}{Machine Learning analysis on crowdness in Python.}
+\item \href{https://github.com/fedy97/digital-innovation-lab-2020}{A simple full stack web application written in React + Express.js to show crowdness of a city on screen.}
+\item \href{https://github.com/fedy97/computerGraphics}{Pinball game written in openGL}
+\item \href{https://github.com/fedy97/TIW_HTML-2020-2021}{Ecommerce App, written in Java, HTML, Thymeleaf, Javascript}
+\item \href{https://github.com/fedy97/Baddy-full-stack-app}{Full Stack mobile application with Flutter, Express.js, Firebase and MongoDb, to help users find caregivers, with a review system.}
+\item Bots cryptocurrencies related: manage my DEFI investments using Web3 library of node.js, buy newest crypto listed on both CEX and DEX, bulksender. Not planned to open source.
+\item \href{https://github.com/fedy97/ing-sw-2019-morreale-marini-orlando}{Multiplayer Board Game - Adrenaline}: written in Java 8, implemented using both Socket and RMI for communication, developed both CLI and GUI with JavaFX.
+\item Development of an innovative constellation scheduler using genetic and exact algorithms. SAR satellite constellations tested. Written in Python 3. Multi-objective optimization. Closed source project of \textit{Thales Alenia Space}.
+\end{itemize}
+
+
+\clearpage
+
+\end{document}

@@ -1,32 +1,55 @@
-name: Github Action for LaTeX by xu-cheng
+# This workflow builds a pdf, and when a tag is pushed then the pdf is released to GitHub releases
+name: Release pdf on tag
 
 on: [push]
 
+env:
+  FILE: main
+
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v1
-      - name: Compile main.tex
-        uses: xu-cheng/latex-action@master
+      - name: Compile Main
+        uses: actions/checkout@v1
         with:
-          # The root LaTeX file to be compiled
           root_file: main.tex
-          # The working directory for the LaTeX engine
           working_directory: src/
-          # The LaTeX engine to be invoked
-          compiler: # optional, default is latexmk
-          # Extra arguments to be passed to the LaTeX engine
-          args: # optional, default is -pdf -file-line-error -interaction=nonstopmode
-          # Install extra packages by apk
-      #          extra_system_packages: # optional
-
-        # Wildcards are not supported yet: https://github.com/actions/upload-artifact/issues/11
-      - name: Upload main.pdf
-        uses: actions/upload-artifact@v1
+          compiler: #optional
+          args:  #optional
+      - name: Upload pdf
+        uses: actions/upload-artifact@v2
         with:
-          name: main
-          path: src/main.pdf
+          name: main.zip
+          path: src/*.pdf
+      - name: Create Release
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+      - name: Prepare output path and output name
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
+        id: prepare_metadata
+        # upload-release-asset does not support wildcards or environment variables at the moment
+        run: |
+          echo ::set-output name=ARTIFACT_PATH::./src/$FILE.pdf
+          echo ::set-output name=ARTIFACT_NAME::$FILE.pdf
+      - name: Upload Release Asset
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ steps.prepare_metadata.outputs.ARTIFACT_PATH }}
+          asset_name: ${{ steps.prepare_metadata.outputs.ARTIFACT_NAME }}
+          asset_content_type: application/pdf
+

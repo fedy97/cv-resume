@@ -1,17 +1,32 @@
-name: dxjoke Tectonic Docker
+name: Github Action for LaTeX by xu-cheng
 
-on: push
+on: [push]
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v1
-      - name: Compile
-        run: docker run --mount src=$GITHUB_WORKSPACE,target=/usr/src/tex,type=bind dxjoke/tectonic-docker:latest /bin/sh -c "tectonic main.tex"
-      - name: Upload pdf
-        uses: actions/upload-artifact@v2
+      - name: Compile main.tex
+        uses: xu-cheng/latex-action@master
         with:
-          name: main.zip
+          # The root LaTeX file to be compiled
+          root_file: main.tex
+          # The working directory for the LaTeX engine
+          working_directory: /
+          # The LaTeX engine to be invoked
+          compiler: # optional, default is latexmk
+          # Extra arguments to be passed to the LaTeX engine
+          args: # optional, default is -pdf -file-line-error -interaction=nonstopmode
+          # Install extra packages by apk
+      #          extra_system_packages: # optional
+
+        # Wildcards are not supported yet: https://github.com/actions/upload-artifact/issues/11
+      - name: Upload main.pdf
+        uses: actions/upload-artifact@v1
+        with:
+          name: main
           path: main.pdf
